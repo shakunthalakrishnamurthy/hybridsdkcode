@@ -1,4 +1,4 @@
-<ion-content  color="primary">
+<ion-content color="primary">
   <form [formGroup]="profileForm">
     <ion-grid>
       <ion-row color="primary" justify-content-center>
@@ -8,32 +8,26 @@
           </div>
           <div padding>
             <ion-item>
-              <ion-input  name="name" formControlName="name" type="text" placeholder="Name"></ion-input>
+              <ion-input name="name" formControlName="name" type="text" placeholder="Name"></ion-input>
             </ion-item>
             <ion-item>
               <ion-input name="email" formControlName="email" type="email" placeholder="your@email.com"></ion-input>
             </ion-item>
             <ion-item>
-              <ion-input name="phonenumber"formControlName="phonenumber" type="phonenumber" placeholder="Phone Number"></ion-input>
+              <ion-input name="phonenumber" formControlName="phonenumber" type="phonenumber" placeholder="Phone Number">
+              </ion-input>
             </ion-item>
           </div>
-          <div padding>
-            <button ion-button color="primary" (click)="submit()">SAVE</button>
+          <div padding text-center>
+            <button block ion-button color="primary" (click)="submit()">SAVE</button>
           </div>
 
-          <div padding>
-            <ion-card *ngFor="let item of items">
-              <img [src]="item.picture" (load)="item.loaded = true" [hidden]="!item.loaded" />
-              <img src="/home/costrategix/ionic/mishipaylib/mishilib/src/assets/imgs/logo.png">
-            </ion-card>
+          <div padding text-center >
+            <button block  ion-button (click)="takePhoto()"><ion-icon name="camera"></ion-icon>TAKE PHOTO</button>
+            <img src="{{image}}" alt="Image" height="125" width="125">
           </div>
 
-          <div padding>
-            <button ion-button color="primary" (click)="openCam()">Open Camera</button>
-            <img src="{{image}}">
-          </div>
-           
-      
+
         </ion-col>
       </ion-row>
     </ion-grid>

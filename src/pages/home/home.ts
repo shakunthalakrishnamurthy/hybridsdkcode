@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
-import { NavController, Alert } from 'ionic-angular';
-import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
+import { NavController } from 'ionic-angular';
+import { Camera, CameraOptions } from '@ionic-native/camera';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { AndroidPermissions } from '@ionic-native/android-permissions/ngx';
 
 @Component({
   selector: 'page-home',
@@ -11,7 +10,7 @@ import { AndroidPermissions } from '@ionic-native/android-permissions/ngx';
 
 export class HomePage {
   profileForm: FormGroup;
-  constructor(public navCtrl: NavController, private camera: Camera,private androidPermissions: AndroidPermissions) {
+  constructor(public navCtrl: NavController, private camera: Camera) {
     this.profileForm = new FormGroup({
       name: new FormControl('', Validators.required),
       email: new FormControl('', [Validators.required, Validators.email]),
@@ -19,16 +18,9 @@ export class HomePage {
     });
   }
 
-
   image: any = ''
-  openCam() {
-    this.androidPermissions.checkPermission(this.androidPermissions.PERMISSION.CAMERA).then(
-      result => console.log('Has permission?',result.hasPermission),
-      err => this.androidPermissions.requestPermission(this.androidPermissions.PERMISSION.CAMERA)
-    );
-    
-    this.androidPermissions.requestPermissions([this.androidPermissions.PERMISSION.CAMERA, this.androidPermissions.PERMISSION.GET_ACCOUNTS]);
-    const options: CameraOptions = {
+  takePhoto() {
+      const options: CameraOptions = {
       quality: 70,
       destinationType: this.camera.DestinationType.DATA_URL,
       encodingType: this.camera.EncodingType.JPEG,
@@ -54,6 +46,15 @@ export class HomePage {
      return this.profileForm.controls['name'].value
   }
 
+  getEmail(){
+    return this.profileForm.controls['email'].value
+  }
+
+  getPhoneNumber(){
+    return this.profileForm.controls['phonenumber'].value
+  }
+
+  //This method will validate if the details filled are valid.
   submit() {
     if (this.profileForm.valid) {
       alert("Successfully submitted");
