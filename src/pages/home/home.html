@@ -1,5 +1,5 @@
 <ion-content  color="primary">
-  <form  #form="ngForm" (ngSubmit)="register(form)">
+  <form [formGroup]="profileForm">
     <ion-grid>
       <ion-row color="primary" justify-content-center>
         <ion-col align-self-center size-md="6" size-lg="5" size-xs="12">
@@ -8,17 +8,17 @@
           </div>
           <div padding>
             <ion-item>
-              <ion-input  name="name" type="text" placeholder="Name" ngModel required></ion-input>
+              <ion-input  name="name" formControlName="name" type="text" placeholder="Name"></ion-input>
             </ion-item>
             <ion-item>
-              <ion-input name="email" type="email" placeholder="your@email.com" ngModel required></ion-input>
+              <ion-input name="email" formControlName="email" type="email" placeholder="your@email.com"></ion-input>
             </ion-item>
             <ion-item>
-              <ion-input name="phone number" type="phonenumber" placeholder="Phone Number" ngModel required></ion-input>
+              <ion-input name="phonenumber"formControlName="phonenumber" type="phonenumber" placeholder="Phone Number"></ion-input>
             </ion-item>
           </div>
           <div padding>
-            <button ion-button color="primary">SAVE</button>
+            <button ion-button color="primary" (click)="submit()">SAVE</button>
           </div>
 
           <div padding>
@@ -27,6 +27,13 @@
               <img src="/home/costrategix/ionic/mishipaylib/mishilib/src/assets/imgs/logo.png">
             </ion-card>
           </div>
+
+          <div padding>
+            <button ion-button color="primary" (click)="openCam()">Open Camera</button>
+            <img src="{{image}}">
+          </div>
+           
+      
         </ion-col>
       </ion-row>
     </ion-grid>

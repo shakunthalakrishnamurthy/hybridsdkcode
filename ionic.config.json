@@ -1,5 +1,7 @@
 {
   "name": "mishilib",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "ionic-angular"
 }
